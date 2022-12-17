@@ -5,5 +5,40 @@
   "comments": [
     { "id": 1, "body": "some comment", "postId": 1 }
   ],
-  "profile": { "name": "json server" }
+  "profile": { "name": "json server" },
+  "campanhas": [
+    {
+      "id": "1",
+      "empresa": "Grupo Opus",
+      "campanha": "30 Motoristas Desativação Categoria D",
+      "descricao": "Motoristas desativação para região de São Paulo",
+      "funcao": "Motorista Desativação",
+      "uf": "SP",
+      "municipio": "São Paulo",
+      "palavraChave": "Categoria D",
+      "validade": "2023-01-10T04:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "empresa": "Grupo Opus",
+      "campanha": "Motoristas BH",
+      "descricao": "Motoristas desativação para região de Belo Horizonte1",
+      "funcao": "Motorista Desativação",
+      "uf": "MG",
+      "municipio": "Minas Gerais",
+      "palavraChave": "Categoria C",
+      "validade": "2023-01-10T04:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "empresa": "Grupo Opus",
+      "campanha": "Jardineiro Rumo SP",
+      "descricao": "Jardineiro para região de São Paulo",
+      "funcao": "Jardineiro",
+      "uf": "SP",
+      "municipio": "São Paulo",
+      "palavraChave": "Jardineiro",
+      "validade": "2023-01-10T04:00:00.000Z"
+    }
+  ]
 }
