@@ -13,7 +13,10 @@ const Campanhas = () => {
   const [campanha, setCampanha] = useState({})
   const { data: campanhas, isLoading, error, refetch: campanhasRefetch } = useQuery('campanhas', fetchCampanhas)
   const deleteCampanha = useMutation({
-    mutationFn: fetchDeleteCampanhaX
+    mutationFn: fetchDeleteCampanhaX,
+    onSuccess: (data) => {
+      campanhasRefetch()
+    }
   })
   const updateCampanha = useMutation({
     mutationFn: fetchUpdateCampanhaX,
@@ -32,11 +35,9 @@ const Campanhas = () => {
       <CampanhaList
         campanhas={ isLoading || error ? [] : campanhas}
         onEdit={campanhaId => {
-          console.log(`Edit campanhaId=${campanhaId}`)
           setCampanha(campanhas.find(el => el.id === campanhaId))
         }}
         onDel={campanhaId => {
-          console.log(`Del campanhaId=${campanhaId}`)
           deleteCampanha.mutate(campanhaId)
         }}
       />
