@@ -11,12 +11,15 @@ const fetchUpdateCampanhaX = (data) => fetch(`http://localhost:3004/campanhas/${
 
 const Campanhas = () => {
   const [campanha, setCampanha] = useState({})
-  const { data: campanhas, isLoading, error } = useQuery('campanhas', fetchCampanhas)
+  const { data: campanhas, isLoading, error, refetch: campanhasRefetch } = useQuery('campanhas', fetchCampanhas)
   const deleteCampanha = useMutation({
     mutationFn: fetchDeleteCampanhaX
   })
   const updateCampanha = useMutation({
-    mutationFn: fetchUpdateCampanhaX
+    mutationFn: fetchUpdateCampanhaX,
+    onSuccess: (data) => {
+      campanhasRefetch()
+    }
   })
 
   return <div>
