@@ -1,3 +1,5 @@
+import React from 'react'
+
 import NavBarListItem from './NavBarListItem'
 const NavBar = () => {
   return <nav className="text-xl py-2 flex justify-between">
@@ -11,8 +13,6 @@ const NavBar = () => {
       <NavBarListItem>Logout</NavBarListItem>
     </ul>
   </nav>
-    
-
 }
 
 export default NavBar

@@ -1,3 +1,6 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+
 const CampanhaList = ({ campanhas, onEdit, onDel }) => {
   return <table className="table-auto mx-auto border">
     <thead>
@@ -23,6 +26,22 @@ const CampanhaList = ({ campanhas, onEdit, onDel }) => {
       }
     </tbody>
   </table>
+}
+
+CampanhaList.propTypes = {
+  campanhas: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    empresa: PropTypes.string.isRequired,
+    campanha: PropTypes.string.isRequired,
+    descricao: PropTypes.string.isRequired,
+    funcao: PropTypes.string.isRequired,
+    uf: PropTypes.string.isRequired,
+    municipio: PropTypes.string.isRequired,
+    palavraChave: PropTypes.string.isRequired,
+    validade: PropTypes.string.isRequired
+  })),
+  onEdit: PropTypes.func.isRequired,
+  onDel: PropTypes.func.isRequired
 }
 
 export default CampanhaList

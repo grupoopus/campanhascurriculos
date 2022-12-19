@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 
 const CampanhaForm = ({ campanha, onSave }) => {
   const [empresa, setEmpresa] = useState()
@@ -24,14 +25,14 @@ const CampanhaForm = ({ campanha, onSave }) => {
   }, [campanha])
 
   return <form className="grid grid-cols-12 gap-8 mx-auto my-8">
-    <input className="border col-span-12" type="text" placeholder="Empresa" value={empresa|| ''} onChange={el => setEmpresa(el.target.value)}/>
-    <input className="border col-span-12" type="text" placeholder="Campanha" value={campanhaNome|| ''} onChange={el => setCampanhaNome(el.target.value)}/>
-    <input className="border col-span-12" type="text" placeholder="Descrição" value={descricao|| ''} onChange={el => setDescricao(el.target.value)}/>
-    <input className="border col-span-12" type="text" placeholder="Função" value={funcao|| ''} onChange={el => setFuncao(el.target.value)}/>
-    <input className="border col-span-3" type="text" placeholder="UF" value={uf|| ''} onChange={el => setUf(el.target.value)}/>
-    <input className="border col-span-9" type="text" placeholder="Município" value={municipio|| ''} onChange={el => setMunicipio(el.target.value)}/>
-    <input className="border col-span-6" type="text" placeholder="Palavra Chave" value={palavraChave|| ''} onChange={el => setPalavraChave(el.target.value)}/>
-    <input className="border col-span-6" type="date" placeholder="Validade" value={validade|| ''} onChange={el => setValidade(el.target.value)}/>
+    <input className="border col-span-12" type="text" placeholder="Empresa" value={empresa || ''} onChange={el => setEmpresa(el.target.value)}/>
+    <input className="border col-span-12" type="text" placeholder="Campanha" value={campanhaNome || ''} onChange={el => setCampanhaNome(el.target.value)}/>
+    <input className="border col-span-12" type="text" placeholder="Descrição" value={descricao || ''} onChange={el => setDescricao(el.target.value)}/>
+    <input className="border col-span-12" type="text" placeholder="Função" value={funcao || ''} onChange={el => setFuncao(el.target.value)}/>
+    <input className="border col-span-3" type="text" placeholder="UF" value={uf || ''} onChange={el => setUf(el.target.value)}/>
+    <input className="border col-span-9" type="text" placeholder="Município" value={municipio || ''} onChange={el => setMunicipio(el.target.value)}/>
+    <input className="border col-span-6" type="text" placeholder="Palavra Chave" value={palavraChave || ''} onChange={el => setPalavraChave(el.target.value)}/>
+    <input className="border col-span-6" type="date" placeholder="Validade" value={validade || ''} onChange={el => setValidade(el.target.value)}/>
     <button className="border col-span-12 bg-gray-200" type="button" disabled={!campanha.id} onClick={() => {
       onSave({
         id: campanha.id,
@@ -46,6 +47,21 @@ const CampanhaForm = ({ campanha, onSave }) => {
       })
     }}>{campanha.id ? 'Salvar' : '------' }</button>
   </form>
+}
+
+CampanhaForm.propTypes = {
+  campanha: {
+    id: PropTypes.number.isRequired,
+    empresa: PropTypes.string.isRequired,
+    campanha: PropTypes.string.isRequired,
+    descricao: PropTypes.string.isRequired,
+    funcao: PropTypes.string.isRequired,
+    uf: PropTypes.string.isRequired,
+    municipio: PropTypes.string.isRequired,
+    palavraChave: PropTypes.string.isRequired,
+    validade: PropTypes.string.isRequired
+  },
+  onSave: PropTypes.func.isRequired
 }
 
 export default CampanhaForm
