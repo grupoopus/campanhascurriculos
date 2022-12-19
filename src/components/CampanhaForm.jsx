@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const CampanhaForm = ({ campanha, save }) => {
-  const [id, setId] = useState()
+const CampanhaForm = ({ campanha, onSave }) => {
   const [empresa, setEmpresa] = useState()
   const [campanhaNome, setCampanhaNome] = useState()
   const [descricao, setDescricao] = useState()
@@ -34,8 +33,8 @@ const CampanhaForm = ({ campanha, save }) => {
     <input className="border col-span-6" type="text" placeholder="Palavra Chave" value={palavraChave|| ''} onChange={el => setPalavraChave(el.target.value)}/>
     <input className="border col-span-6" type="date" placeholder="Validade" value={validade|| ''} onChange={el => setValidade(el.target.value)}/>
     <button className="border col-span-12 bg-gray-200" type="button" disabled={!campanha.id} onClick={() => {
-      save({
-        id,
+      onSave({
+        id: campanha.id,
         empresa,
         campanha: campanhaNome,
         descricao,
@@ -45,7 +44,7 @@ const CampanhaForm = ({ campanha, save }) => {
         palavraChave,
         validade
       })
-    }}>Salvar</button>
+    }}>{campanha.id ? 'Salvar' : '------' }</button>
   </form>
 }
 
