@@ -1,6 +1,17 @@
 # tanquery
-- [ ] db campanhaInfo e muitas campanhas
-- [ ] query info, depois campanha
-- [ ] botoes paginacao
-- [ ] paginado mantém antigo
-- [ ] pagina infinita
+## GET
+- [x] muitas campanhas
+- [x] db campanhaInfo
+- [ ] campanhas apenas pagina 1
+- [ ] troca pagina
+## POST
+- [ ] update otimista
+- [ ] caso erro
+
+# Capmanhas
+- [ ] botao criar novo
+- [ ] botao cancelar
+
+# router
+- [ ] multipaginas
+- [ ] listar -> editar/novo
