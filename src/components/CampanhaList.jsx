@@ -15,7 +15,7 @@ const CampanhaList = ({ campanhas, onEdit, onDel }) => {
     </thead>
     <tbody>
       {
-        campanhas.map(el => <tr key={el.id}>
+        campanhas?.map(el => <tr key={el.id}>
           <td>{el.id}</td>
           <td>{el.campanha}</td>
           <td>{el.descricao}</td>
@@ -31,7 +31,6 @@ const CampanhaList = ({ campanhas, onEdit, onDel }) => {
 CampanhaList.propTypes = {
   campanhas: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    empresa: PropTypes.string.isRequired,
     campanha: PropTypes.string.isRequired,
     descricao: PropTypes.string.isRequired,
     funcao: PropTypes.string.isRequired,

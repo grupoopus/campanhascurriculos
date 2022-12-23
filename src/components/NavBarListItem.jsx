@@ -11,6 +11,6 @@ const NavBarListItem = ({ children, selected }) => {
 
 NavBarListItem.propTypes = {
   children: PropTypes.string.isRequired,
-  selected: PropTypes.bool.isRequired
+  selected: PropTypes.bool
 }
 export default NavBarListItem

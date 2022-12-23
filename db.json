@@ -16,10 +16,12 @@
   "profile": {
     "name": "json server"
   },
+  "me": {
+    "empresa": "Grupo Opus"
+  },
   "campanhas": [
     {
       "id": 1,
-      "empresa": "Grupo Opus",
       "campanha": "30 Motoristas Desativação Categoria D",
       "descricao": "Motoristas desativação para região de São Paulo",
       "funcao": "Motorista Desativação",
@@ -30,7 +32,6 @@
     },
     {
       "id": 2,
-      "empresa": "Grupo Opus",
       "campanha": "Motoristas BH",
       "descricao": "Motoristas desativação para região de Belo Horizonte1",
       "funcao": "Motorista Desativação",
@@ -41,7 +42,6 @@
     },
     {
       "id": 3,
-      "empresa": "Grupo Opus",
       "campanha": "Jardineiro Rumo SP",
       "descricao": "Jardineiro para região de São Paulo",
       "funcao": "Jardineiro",
