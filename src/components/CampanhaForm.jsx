@@ -48,7 +48,6 @@ const CampanhaForm = ({ campanha, onSave }) => {
 CampanhaForm.propTypes = {
   campanha: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    empresa: PropTypes.string.isRequired,
     campanha: PropTypes.string.isRequired,
     descricao: PropTypes.string.isRequired,
     funcao: PropTypes.string.isRequired,
