@@ -19,6 +19,9 @@
   "me": {
     "empresa": "Grupo Opus"
   },
+  "campanhasinfo": {
+    "total": 11
+  },
   "campanhas": [
     {
       "id": 1,

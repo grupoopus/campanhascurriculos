@@ -2,26 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const CampanhaList = ({ campanhas, onEdit, onDel }) => {
-  return <table className="table-fixed mx-auto border text-center min-w-[80%]">
+  return <table className="table-fixed mx-auto border text-center border-collapse min-w-[80%]">
     <thead>
-      <tr>
-        <th>id</th>
-        <th>Campanha</th>
-        <th>Descrição</th>
-        <th>Função</th>
-        <th>Editar</th>
-        <th>Excluir</th>
+      <tr className='bg-gray-400 border'>
+        <th className='border'>id</th>
+        <th className='border'>Campanha</th>
+        <th className='border'>Descrição</th>
+        <th className='border'>Função</th>
+        <th className='border'>Editar</th>
+        <th className='border'>Excluir</th>
       </tr>
     </thead>
     <tbody>
       {
-        campanhas?.map(el => <tr key={el.id}>
-          <td>{el.id}</td>
-          <td>{el.campanha}</td>
-          <td>{el.descricao}</td>
-          <td>{el.funcao}</td>
-          <td className="cursor-pointer" onClick={() => onEdit(el.id)}>edit</td>
-          <td className="cursor-pointer" onClick={() => onDel(el.id)}>del</td>
+        campanhas?.map((el, idx) => <tr className={idx % 2 === 0 ? '' : 'bg-gray-200'} key={el.id}>
+          <td className='border'>{el.id}</td>
+          <td className='border'>{el.campanha}</td>
+          <td className='border'>{el.descricao}</td>
+          <td className='border'>{el.funcao}</td>
+          <td className='border cursor-pointer' onClick={() => onEdit(el.id)}>edit</td>
+          <td className='border cursor-pointer' onClick={() => onDel(el.id)}>del</td>
         </tr>)
       }
     </tbody>

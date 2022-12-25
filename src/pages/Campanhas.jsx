@@ -7,7 +7,7 @@ import CampanhaList from '../components/CampanhaList'
 import CampanhaForm from '../components/CampanhaForm'
 import PageControl from '../components/PageControl'
 
-const pageSize = 2
+const pageSize = 4
 
 const fetchCampanhas = ({ queryKey }) => {
   const pageNumber = queryKey.slice(-1)
