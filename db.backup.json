@@ -129,16 +129,6 @@
       "municipio": "municipio 11",
       "palavraChave": "Chave 11",
       "validade": "2023-03-22"
-    },
-    {
-      "id": 12,
-      "campanha": "CAMPANHA 12",
-      "descricao": "Descrição 12",
-      "funcao": "função 12",
-      "uf": "uf 12",
-      "municipio": "municipio 12",
-      "palavraChave": "Chave 12",
-      "validade": "2023-03-22"
     }
   ]
 }
