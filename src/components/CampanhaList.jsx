@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const CampanhaList = ({ campanhas, onEdit, onDel }) => {
-  return <table className="table-fixed mx-auto border">
+  return <table className="table-fixed mx-auto border text-center min-w-[80%]">
     <thead>
       <tr>
         <th>id</th>

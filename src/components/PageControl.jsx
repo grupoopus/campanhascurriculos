@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 const PageControl = ({ pageNumber, totalPages, onDecrease, onEncrease }) => {
   const decreaseDisabled = pageNumber === 1
   const encreaseDisabled = pageNumber === totalPages
-  return <div className="flex flex-row justify-center">
+  return <div className="flex flex-row justify-center mt-4">
     <button
       className="bg-white hover:bg-gray-100 border rounded shadow px-2"
       disabled={decreaseDisabled}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useQuery, useMutation } from 'react-query'
+import { useQuery, useMutation, useQueryClient } from 'react-query'
 
 import NavBar from '../components/NavBar'
 import CampanhaList from '../components/CampanhaList'
@@ -18,6 +18,7 @@ const fetchDeleteCampanhaX = (id) => fetch(`http://localhost:3004/campanhas/${id
 const fetchUpdateCampanhaX = (data) => fetch(`http://localhost:3004/campanhas/${data.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
 
 const Campanhas = ({ empresa }) => {
+  const queryClient = useQueryClient()
   const [pageNumber, setPageNumber] = useState(1)
   const [campanha, setCampanha] = useState()
   const { data: totalPages } = useQuery('campanhasinfo', fetchCampanhasinfo, {
@@ -29,17 +30,16 @@ const Campanhas = ({ empresa }) => {
       return incompletePages ? completePages + 1 : completePages
     }
   })
-  const { data: campanhas, isLoading, error, refetch: campanhasRefetch } = useQuery(['campanhas', pageNumber], fetchCampanhas, { refetchInterval: 5_000, enabled: !!empresa })
-  const deleteCampanha = useMutation({
-    mutationFn: fetchDeleteCampanhaX,
+  const { data: campanhas, isLoading, error } = useQuery(['campanhas', pageNumber], fetchCampanhas, { refetchInterval: 5_000, enabled: !!empresa })
+  const deleteCampanha = useMutation(fetchDeleteCampanhaX, {
     onSuccess: (data) => {
-      campanhasRefetch()
+      queryClient.invalidateQueries('campanhasinfo')
+      queryClient.invalidateQueries(['campanhas', pageNumber])
     }
   })
-  const updateCampanha = useMutation({
-    mutationFn: fetchUpdateCampanhaX,
+  const updateCampanha = useMutation(fetchUpdateCampanhaX, {
     onSuccess: (data) => {
-      campanhasRefetch()
+      queryClient.invalidateQueries(['campanhas', pageNumber])
     }
   })
 
