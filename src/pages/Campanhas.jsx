@@ -30,7 +30,6 @@ const Campanhas = ({ empresa }) => {
   const { data: { campanhas, totalPages = 1 } = {}, isLoading, error } = useQuery(['campanhas', pageNumber], fetchCampanhas, { refetchInterval: 60_000, enabled: !!empresa })
   const deleteCampanha = useMutation(fetchDeleteCampanhaX, {
     onSuccess: () => {
-      queryClient.invalidateQueries('campanhasinfo')
       queryClient.invalidateQueries(['campanhas', pageNumber])
     }
   })
