@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useQuery, useMutation, useQueryClient } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 
-import NavBar from '../components/NavBar'
 import CampanhaList from '../components/CampanhaList'
-import CampanhaForm from '../components/CampanhaForm'
 import PageControl from '../components/PageControl'
 
 const pageSize = 4
@@ -21,38 +20,33 @@ const fetchCampanhas = ({ queryKey }) => {
   })
 }
 const fetchDeleteCampanhaX = (id) => fetch(`http://localhost:3004/campanhas/${id}`, { method: 'DELETE' })
-const fetchUpdateCampanhaX = (data) => fetch(`http://localhost:3004/campanhas/${data.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
 
 const Campanhas = ({ empresa }) => {
   const queryClient = useQueryClient()
-  const [pageNumber, setPageNumber] = useState(1)
-  const [campanha, setCampanha] = useState()
-  const { data: { campanhas, totalPages = 1 } = {}, isLoading, error } = useQuery(['campanhas', pageNumber], fetchCampanhas, { refetchInterval: 60_000, enabled: !!empresa })
-  const deleteCampanha = useMutation(fetchDeleteCampanhaX, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['campanhas', pageNumber])
-    }
+  const navigate = useNavigate()
+  const [pageNumber, setPageNumber] = useState(Number(sessionStorage.getItem('campanhapage')) || 1)
+  const { data: { campanhas, totalPages = 1 } = {}, isLoading, error } = useQuery(['campanhas', pageNumber], fetchCampanhas, {
+    refetchInterval: 60_000,
+    staleTime: 60_000,
+    enabled: !!empresa
   })
-  const updateCampanha = useMutation(fetchUpdateCampanhaX, {
+  const deleteCampanha = useMutation(fetchDeleteCampanhaX, {
     onSuccess: () => {
       queryClient.invalidateQueries(['campanhas', pageNumber])
     }
   })
 
   return <div>
-    <NavBar empresa={empresa || 'logining'} />
     <main className='container mx-auto'>
-      <CampanhaForm
-        campanha={campanha}
-        onSave={c => {
-          updateCampanha.mutate(c)
-          setCampanha()
-        }}
-      />
+      <div className="flex flex-row justify-center m-8">
+        <button className='bg-white hover:bg-gray-100 border rounded shadow px-2' onClick={() => navigate('/campanhanova')}>Nova Campanha</button>
+      </div>
+
       <CampanhaList
         campanhas={ isLoading || error ? [] : campanhas}
         onEdit={campanhaId => {
-          setCampanha(campanhas.find(el => el.id === campanhaId))
+          // setCampanha(campanhas.find(el => el.id === campanhaId))
+          navigate(`/campanhaedit/${campanhaId}`)
         }}
         onDel={campanhaId => {
           deleteCampanha.mutate(campanhaId)
@@ -62,10 +56,14 @@ const Campanhas = ({ empresa }) => {
         pageNumber={pageNumber}
         totalPages={totalPages}
         onDecrease={() => {
-          setPageNumber(pageNumber - 1)
+          const newPageNumber = pageNumber - 1
+          setPageNumber(newPageNumber)
+          sessionStorage.setItem('campanhapage', newPageNumber)
         }}
         onEncrease={() => {
-          setPageNumber(pageNumber + 1)
+          const newPageNumber = pageNumber + 1
+          setPageNumber(newPageNumber)
+          sessionStorage.setItem('campanhapage', newPageNumber)
         }}
       />
     </main>
