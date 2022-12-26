@@ -4,9 +4,11 @@ import { useQuery } from 'react-query'
 
 import Navbar from './components/NavBar'
 import Raiz from './pages/Raiz'
-import Campanhas from './pages/Campanhas'
+
 import CampanhaEdit from './pages/CampanhaEdit'
 import CampanhaNova from './pages/CampanhaNova'
+
+const LazyCampanhas = React.lazy(() => import('./pages/Campanhas'))
 
 const fetchMe = () => fetch('http://localhost:3004/me').then(res => res.json())
 
@@ -15,7 +17,7 @@ function App () {
   return <>
     <Navbar empresa={me?.empresa || 'logining'}/>
     <Routes>
-      <Route path='campanhas' element={<Campanhas empresa={me?.empresa} />}/>
+      <Route path='campanhas' element={<React.Suspense fallback='Carregando'><LazyCampanhas empresa={me?.empresa} /></React.Suspense>}/>
       <Route path='campanhaedit/:campanhaId' element={<CampanhaEdit />}/>
       <Route path='campanhanova' element={<CampanhaNova />}/>
       <Route path='about' element={<h1>about</h1>}/>
