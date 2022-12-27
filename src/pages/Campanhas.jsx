@@ -39,7 +39,7 @@ const Campanhas = ({ empresa }) => {
   return <div>
     <main className='container mx-auto'>
       <div className="flex flex-row justify-center m-8">
-        <button className='bg-white hover:bg-gray-100 border rounded shadow px-2' onClick={() => navigate('/campanhanova')}>Nova Campanha</button>
+        <button className='bg-white hover:bg-gray-100 border rounded shadow px-4 py-2' onClick={() => navigate('/campanhanova')}>Nova Campanha</button>
       </div>
 
       <CampanhaList

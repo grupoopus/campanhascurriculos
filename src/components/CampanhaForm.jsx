@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const CampanhaForm = ({ campanha, onSave }) => {
+const CampanhaForm = ({ campanha, onClick }) => {
   const [campanhaNome, setCampanhaNome] = useState()
   const [descricao, setDescricao] = useState()
   const [funcao, setFuncao] = useState()
@@ -30,24 +30,12 @@ const CampanhaForm = ({ campanha, onSave }) => {
     <input className="border col-span-9" type="text" placeholder="Município" value={municipio || ''} onChange={el => setMunicipio(el.target.value)}/>
     <input className="border col-span-6" type="text" placeholder="Palavra Chave" value={palavraChave || ''} onChange={el => setPalavraChave(el.target.value)}/>
     <input className="border col-span-6" type="date" placeholder="Validade" value={validade || ''} onChange={el => setValidade(el.target.value)}/>
-    <button className="border col-span-12 bg-gray-200" type="button" disabled={!campanha} onClick={() => {
-      onSave({
-        id: campanha.id,
-        campanha: campanhaNome,
-        descricao,
-        funcao,
-        uf,
-        municipio,
-        palavraChave,
-        validade
-      })
-    }}>{campanha ? 'Salvar' : '------' }</button>
+    <button className='bg-white hover:bg-gray-100 border rounded shadow px-4 py-2 mx-auto' onClick={onClick}>OK</button>
   </form>
 }
 
 CampanhaForm.propTypes = {
   campanha: PropTypes.shape({
-    id: PropTypes.number.isRequired,
     campanha: PropTypes.string.isRequired,
     descricao: PropTypes.string.isRequired,
     funcao: PropTypes.string.isRequired,
@@ -56,7 +44,7 @@ CampanhaForm.propTypes = {
     palavraChave: PropTypes.string.isRequired,
     validade: PropTypes.string.isRequired
   }),
-  onSave: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired
 }
 
 export default CampanhaForm
