@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter } from 'react-router-dom'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import Auth0ProviderWithRedirectCallback from './components/Auth0ProviderWithRedirectCallback'
 
 import App from './App'
 import './index.css'
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <App />
+        <Auth0ProviderWithRedirectCallback>
+          <App />
+        </Auth0ProviderWithRedirectCallback>
       </BrowserRouter>
       <ReactQueryDevtools />
     </QueryClientProvider>
