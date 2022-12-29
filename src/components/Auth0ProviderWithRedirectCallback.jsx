@@ -13,7 +13,7 @@ const Auth0ProviderWithRedirectCallback = ({ children }) => {
       onRedirectCallback={onRedirectCallback}
         domain={import.meta.env.VITE_AUTH0_DOMAIN}
         clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
-        redirectUri={`${window.location.origin}/redirectsuccessfullogin`}
+        redirectUri={`${window.location.origin}/auth0token`}
         audience={`https://${import.meta.env.VITE_AUTH0_DOMAIN}/api/v2/`}
         scope='openid profile email read:roles'
     >

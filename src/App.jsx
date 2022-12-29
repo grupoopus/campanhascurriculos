@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Raiz from './pages/Raiz'
 import CampanhaEdit from './pages/CampanhaEdit'
 import CampanhaNova from './pages/CampanhaNova'
+import Auth0Token from './pages/Auth0Token'
 
 const LazyCampanhas = React.lazy(() => import('./pages/Campanhas'))
 
@@ -22,6 +23,7 @@ function App () {
       <Route path='campanhas' element={<ProtectedRoute component={CampanhasSuspense} />}/>
       <Route path='campanhaedit/:campanhaId' element={<ProtectedRoute component={CampanhaEdit} />}/>
       <Route path='campanhanova' element={<ProtectedRoute component={CampanhaNova} />}/>
+      <Route path='auth0token' element={<ProtectedRoute component={Auth0Token} />}/>
       <Route path='*' element={<Raiz />}/>
     </Routes>
   </>
