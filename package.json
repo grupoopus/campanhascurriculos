@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "api": "npx json-server --port 3004 --watch db.json",
+    "api": "npx json-server --port 3004 --delay 1000 --watch db.json",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"

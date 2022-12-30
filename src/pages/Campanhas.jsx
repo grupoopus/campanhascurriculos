@@ -25,9 +25,10 @@ const Campanhas = ({ empresa }) => {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
   const [pageNumber, setPageNumber] = useState(Number(sessionStorage.getItem('campanhapage')) || 1)
-  const { data: { campanhas, totalPages = 1 } = {}, isLoading, error } = useQuery(['campanhas', pageNumber], fetchCampanhas, {
+  const { data: { campanhas, totalPages = 1 } = {}, isLoading, isPreviousData, error } = useQuery(['campanhas', pageNumber], fetchCampanhas, {
     refetchInterval: 60_000,
     staleTime: 60_000,
+    keepPreviousData: true,
     enabled: !!empresa
   })
   const deleteCampanha = useMutation(fetchDeleteCampanhaX, {
@@ -55,6 +56,7 @@ const Campanhas = ({ empresa }) => {
       <PageControl
         pageNumber={pageNumber}
         totalPages={totalPages}
+        loading={isPreviousData || isLoading}
         onDecrease={() => {
           const newPageNumber = pageNumber - 1
           setPageNumber(newPageNumber)
