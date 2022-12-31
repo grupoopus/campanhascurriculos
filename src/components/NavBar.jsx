@@ -8,9 +8,9 @@ import NavBarLogout from './NavBarLogout'
 
 const NavBar = ({ empresa }) => {
   const { isAuthenticated } = useAuth0()
-  return <nav className="text-xl py-2 flex justify-between">
-    <h1 className="text-gray-800 font-serif uppercas">{empresa}</h1>
-    <ul className="text-gray-600 flex items-center">
+  return <nav className="text-xl py-2 flex justify-between transition ease-in-out delay-150 shadow-lg hover:shadow-xl duration-300">
+    <p className="text-gray-800 font-serif uppercase font-semibold my-auto pl-4">{empresa}</p>
+    <ul className="text-gray-600 flex items-center pr-4">
       {
         isAuthenticated
           ? <>
