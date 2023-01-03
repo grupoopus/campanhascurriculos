@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "94c08a03-f0e0-477b-b5d4-7aa65310ca78",
+		"name": "API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19428088"
+	},
+	"item": [
+		{
+			"name": "Health check",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjF0dmh0R0JpZVJ2NlAtQ3hneDVHTSJ9.eyJpc3MiOiJodHRwczovL2Rldi04cXdibDBxNS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjNiMmU4Njg1ZjM2OGFlMWExYWIzYjdmIiwiYXVkIjpbImh0dHBzOi8vZGV2LThxd2JsMHE1LnVzLmF1dGgwLmNvbS9hcGkvdjIvIiwiaHR0cHM6Ly9kZXYtOHF3YmwwcTUudXMuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTY3Mjc2MzE4MCwiZXhwIjoxNjcyODQ5NTgwLCJhenAiOiJsa3Z5Z1VNaXdjTUNEeGhrdGNxRHh1OUdHYUZqS3lvYSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.TvGUKFrYdsiMlUnmhH-QgnJhTS90S_cKN4cs_n5JRF6gtnzJIRTb6SN3XgzUEr7qHSUvH-UewVbvsgetc2IfHzR7xZG_CXQiVZynUsgL3mHKwUXEGxGiB-4j3uAmTpRQ0k_gRSjMTgX9lqFdof3UzWibUXNMVFVtA_7Egk663GmRlsVwTdkTeZ0xBgheCkvoy-QqFtDspoTI2Ugp2yycPg3i8VIEKySi_WE65lpFkHhTBCXwRFlvqarRBPlLbU2t6wJGAcwNRJC7yNeKQdanmq5wkw7DV_ACdYymdaFZuhaLd9KIc2PbqsfPhndvjTMA8wkyVBg14AMjds0oxneWyQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.campanhas.solucoesgrupoopus.com/health",
+					"protocol": "https",
+					"host": [
+						"api",
+						"campanhas",
+						"solucoesgrupoopus",
+						"com"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Campanhas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjF0dmh0R0JpZVJ2NlAtQ3hneDVHTSJ9.eyJpc3MiOiJodHRwczovL2Rldi04cXdibDBxNS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjNiMmU4Njg1ZjM2OGFlMWExYWIzYjdmIiwiYXVkIjpbImh0dHBzOi8vZGV2LThxd2JsMHE1LnVzLmF1dGgwLmNvbS9hcGkvdjIvIiwiaHR0cHM6Ly9kZXYtOHF3YmwwcTUudXMuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTY3Mjc2MzE4MCwiZXhwIjoxNjcyODQ5NTgwLCJhenAiOiJsa3Z5Z1VNaXdjTUNEeGhrdGNxRHh1OUdHYUZqS3lvYSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.TvGUKFrYdsiMlUnmhH-QgnJhTS90S_cKN4cs_n5JRF6gtnzJIRTb6SN3XgzUEr7qHSUvH-UewVbvsgetc2IfHzR7xZG_CXQiVZynUsgL3mHKwUXEGxGiB-4j3uAmTpRQ0k_gRSjMTgX9lqFdof3UzWibUXNMVFVtA_7Egk663GmRlsVwTdkTeZ0xBgheCkvoy-QqFtDspoTI2Ugp2yycPg3i8VIEKySi_WE65lpFkHhTBCXwRFlvqarRBPlLbU2t6wJGAcwNRJC7yNeKQdanmq5wkw7DV_ACdYymdaFZuhaLd9KIc2PbqsfPhndvjTMA8wkyVBg14AMjds0oxneWyQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.campanhas.solucoesgrupoopus.com/campanha?_page=1&_limit=10",
+					"protocol": "https",
+					"host": [
+						"api",
+						"campanhas",
+						"solucoesgrupoopus",
+						"com"
+					],
+					"path": [
+						"campanha"
+					],
+					"query": [
+						{
+							"key": "_page",
+							"value": "1"
+						},
+						{
+							"key": "_limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Campanha by Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjF0dmh0R0JpZVJ2NlAtQ3hneDVHTSJ9.eyJpc3MiOiJodHRwczovL2Rldi04cXdibDBxNS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjNiMmU4Njg1ZjM2OGFlMWExYWIzYjdmIiwiYXVkIjpbImh0dHBzOi8vZGV2LThxd2JsMHE1LnVzLmF1dGgwLmNvbS9hcGkvdjIvIiwiaHR0cHM6Ly9kZXYtOHF3YmwwcTUudXMuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTY3Mjc2MzE4MCwiZXhwIjoxNjcyODQ5NTgwLCJhenAiOiJsa3Z5Z1VNaXdjTUNEeGhrdGNxRHh1OUdHYUZqS3lvYSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.TvGUKFrYdsiMlUnmhH-QgnJhTS90S_cKN4cs_n5JRF6gtnzJIRTb6SN3XgzUEr7qHSUvH-UewVbvsgetc2IfHzR7xZG_CXQiVZynUsgL3mHKwUXEGxGiB-4j3uAmTpRQ0k_gRSjMTgX9lqFdof3UzWibUXNMVFVtA_7Egk663GmRlsVwTdkTeZ0xBgheCkvoy-QqFtDspoTI2Ugp2yycPg3i8VIEKySi_WE65lpFkHhTBCXwRFlvqarRBPlLbU2t6wJGAcwNRJC7yNeKQdanmq5wkw7DV_ACdYymdaFZuhaLd9KIc2PbqsfPhndvjTMA8wkyVBg14AMjds0oxneWyQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.campanhas.solucoesgrupoopus.com/campanha/id/:id",
+					"protocol": "https",
+					"host": [
+						"api",
+						"campanhas",
+						"solucoesgrupoopus",
+						"com"
+					],
+					"path": [
+						"campanha",
+						"id",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Campanha",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjF0dmh0R0JpZVJ2NlAtQ3hneDVHTSJ9.eyJpc3MiOiJodHRwczovL2Rldi04cXdibDBxNS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjNiMmU4Njg1ZjM2OGFlMWExYWIzYjdmIiwiYXVkIjpbImh0dHBzOi8vZGV2LThxd2JsMHE1LnVzLmF1dGgwLmNvbS9hcGkvdjIvIiwiaHR0cHM6Ly9kZXYtOHF3YmwwcTUudXMuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTY3Mjc2MzE4MCwiZXhwIjoxNjcyODQ5NTgwLCJhenAiOiJsa3Z5Z1VNaXdjTUNEeGhrdGNxRHh1OUdHYUZqS3lvYSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.TvGUKFrYdsiMlUnmhH-QgnJhTS90S_cKN4cs_n5JRF6gtnzJIRTb6SN3XgzUEr7qHSUvH-UewVbvsgetc2IfHzR7xZG_CXQiVZynUsgL3mHKwUXEGxGiB-4j3uAmTpRQ0k_gRSjMTgX9lqFdof3UzWibUXNMVFVtA_7Egk663GmRlsVwTdkTeZ0xBgheCkvoy-QqFtDspoTI2Ugp2yycPg3i8VIEKySi_WE65lpFkHhTBCXwRFlvqarRBPlLbU2t6wJGAcwNRJC7yNeKQdanmq5wkw7DV_ACdYymdaFZuhaLd9KIc2PbqsfPhndvjTMA8wkyVBg14AMjds0oxneWyQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"company\": \"Grupo Opus\",\r\n  \"campaignName\": \"Motorista - Banco de Talentos - Opus\",\r\n  \"description\": \"Campanha para adicionar motoristas na base de dados.\",\r\n  \"role\": \"Motorista\",\r\n  \"city\": \"\",\r\n  \"UF\": \"\",\r\n  \"expirationDate\": \"01/06/2023\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.campanhas.solucoesgrupoopus.com/campanha",
+					"protocol": "https",
+					"host": [
+						"api",
+						"campanhas",
+						"solucoesgrupoopus",
+						"com"
+					],
+					"path": [
+						"campanha"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Curriculos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjF0dmh0R0JpZVJ2NlAtQ3hneDVHTSJ9.eyJpc3MiOiJodHRwczovL2Rldi04cXdibDBxNS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjNiMmU4Njg1ZjM2OGFlMWExYWIzYjdmIiwiYXVkIjpbImh0dHBzOi8vZGV2LThxd2JsMHE1LnVzLmF1dGgwLmNvbS9hcGkvdjIvIiwiaHR0cHM6Ly9kZXYtOHF3YmwwcTUudXMuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTY3Mjc2MzE4MCwiZXhwIjoxNjcyODQ5NTgwLCJhenAiOiJsa3Z5Z1VNaXdjTUNEeGhrdGNxRHh1OUdHYUZqS3lvYSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwifQ.TvGUKFrYdsiMlUnmhH-QgnJhTS90S_cKN4cs_n5JRF6gtnzJIRTb6SN3XgzUEr7qHSUvH-UewVbvsgetc2IfHzR7xZG_CXQiVZynUsgL3mHKwUXEGxGiB-4j3uAmTpRQ0k_gRSjMTgX9lqFdof3UzWibUXNMVFVtA_7Egk663GmRlsVwTdkTeZ0xBgheCkvoy-QqFtDspoTI2Ugp2yycPg3i8VIEKySi_WE65lpFkHhTBCXwRFlvqarRBPlLbU2t6wJGAcwNRJC7yNeKQdanmq5wkw7DV_ACdYymdaFZuhaLd9KIc2PbqsfPhndvjTMA8wkyVBg14AMjds0oxneWyQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"função\":\"motorista\",\r\n  \"cidade\":[\"salvador\",\"congonhas\"],\r\n  \"cnh\":[\"D\"],\r\n  \"deficiencia\": \"nao\",\r\n  \"idadeMin\": 20,\r\n  \"idadeMax\": 40,\r\n  \"pretensaoMin\": 1000,\r\n  \"pretensaoMax\": 2500,\r\n  \"sexo\":\"masculino\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.campanhas.solucoesgrupoopus.com/curriculo?_page=1&_limit=10",
+					"protocol": "https",
+					"host": [
+						"api",
+						"campanhas",
+						"solucoesgrupoopus",
+						"com"
+					],
+					"path": [
+						"curriculo"
+					],
+					"query": [
+						{
+							"key": "_page",
+							"value": "1"
+						},
+						{
+							"key": "_limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
