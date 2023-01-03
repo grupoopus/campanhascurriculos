@@ -1,10 +1,14 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
+import axios from 'axios'
 
 const fetchCampanhaX = ({ queryKey }) => {
   const campanhaId = queryKey.slice(-1)
-  return fetch(`http://localhost:3004/campanhas/${campanhaId}`).then(res => res.json())
+  return axios({
+    method: 'GET',
+    url: `/campanhas/${campanhaId}`
+  }).then(res => res.data)
 }
 
 const CampanhaEdit = () => {

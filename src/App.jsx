@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { useQuery } from 'react-query'
+import axios from 'axios'
 
 import Navbar from './components/NavBar'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -11,7 +12,10 @@ import Auth0Token from './pages/Auth0Token'
 
 const LazyCampanhas = React.lazy(() => import('./pages/Campanhas'))
 
-const fetchMe = () => fetch('http://localhost:3004/me').then(res => res.json())
+const fetchMe = () => axios({
+  method: 'GET',
+  url: '/me'
+}).then(res => res.data)
 
 function App () {
   const { data: me } = useQuery('me', fetchMe)

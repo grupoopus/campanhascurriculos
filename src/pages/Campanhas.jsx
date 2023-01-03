@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useQuery, useMutation, useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 import CampanhaList from '../components/CampanhaList'
 import PageControl from '../components/PageControl'
@@ -10,16 +11,27 @@ const pageSize = 4
 
 const fetchCampanhas = ({ queryKey }) => {
   const pageNumber = queryKey.slice(-1)
-  return fetch(`http://localhost:3004/campanhas?_limit=${pageSize}&_page=${pageNumber}`).then(async res => {
-    const totalCount = res.headers.get('x-total-count')
+  return axios({
+    method: 'GET',
+    url: '/campanhas',
+    params: {
+      _limit: pageSize,
+      _page: pageNumber
+    }
+  }).then(res => {
+    const totalCount = res.headers['x-total-count']
     const completePages = Math.trunc(totalCount / pageSize)
     const incompletePages = totalCount % pageSize !== 0
     const totalPages = incompletePages ? completePages + 1 : completePages
-    const campanhas = await res.json()
+    const campanhas = res.data
+
     return { campanhas, totalPages }
   })
 }
-const fetchDeleteCampanhaX = (id) => fetch(`http://localhost:3004/campanhas/${id}`, { method: 'DELETE' })
+const fetchDeleteCampanhaX = (id) => axios({
+  method: 'DELETE',
+  url: `/campanhas/${id}`
+})
 
 const Campanhas = ({ empresa }) => {
   const queryClient = useQueryClient()

@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
-const fetchPostCampanha = (campanha) => fetch('http://localhost:3004/campanhas', {
+const fetchPostCampanha = campanha => axios({
   method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(campanha)
+  url: '/campanhas',
+  data: campanha
 })
 
 const CampanhaNova = () => {
@@ -58,25 +57,3 @@ const CampanhaNova = () => {
   </div>
 }
 export default CampanhaNova
-
-/*
-
-const [campanha, setCampanha] = useState()
-
-const updateCampanha = useMutation(fetchUpdateCampanhaX, {
-  onSuccess: () => {
-    queryClient.invalidateQueries(['campanhas', pageNumber])
-  }
-})
-
-<CampanhaForm
-campanha={campanha}
-onSave={c => {
-  updateCampanha.mutate(c)
-  setCampanha()
-}}
-/>
-
-const fetchUpdateCampanhaX = (data) => fetch(`http://localhost:3004/campanhas/${data.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-
-*/
