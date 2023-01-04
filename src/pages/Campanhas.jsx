@@ -49,39 +49,37 @@ const Campanhas = ({ empresa }) => {
     }
   })
 
-  return <div>
-    <main className='container mx-auto'>
-      <div className="flex flex-row justify-center m-8">
-        <button className='bg-white hover:bg-gray-100 border rounded shadow px-4 py-2' onClick={() => navigate('/campanhanova')}>Nova Campanha</button>
-      </div>
+  return <main className='container mx-auto'>
+    <div className="flex flex-row justify-center m-8">
+      <button className='bg-white hover:bg-gray-100 border rounded shadow px-4 py-2' onClick={() => navigate('/campanhanova')}>Nova Campanha</button>
+    </div>
 
-      <CampanhaList
-        campanhas={ isLoading || error ? [] : campanhas}
-        onEdit={campanhaId => {
-          // setCampanha(campanhas.find(el => el.id === campanhaId))
-          navigate(`/campanhaedit/${campanhaId}`)
-        }}
-        onDel={campanhaId => {
-          deleteCampanha.mutate(campanhaId)
-        }}
-      />
-      <PageControl
-        pageNumber={pageNumber}
-        totalPages={totalPages}
-        loading={isPreviousData || isLoading}
-        onDecrease={() => {
-          const newPageNumber = pageNumber - 1
-          setPageNumber(newPageNumber)
-          sessionStorage.setItem('campanhapage', newPageNumber)
-        }}
-        onEncrease={() => {
-          const newPageNumber = pageNumber + 1
-          setPageNumber(newPageNumber)
-          sessionStorage.setItem('campanhapage', newPageNumber)
-        }}
-      />
-    </main>
-  </div>
+    <CampanhaList
+      campanhas={ isLoading || error ? [] : campanhas}
+      onEdit={campanhaId => {
+        // setCampanha(campanhas.find(el => el.id === campanhaId))
+        navigate(`/campanhaedit/${campanhaId}`)
+      }}
+      onDel={campanhaId => {
+        deleteCampanha.mutate(campanhaId)
+      }}
+    />
+    <PageControl
+      pageNumber={pageNumber}
+      totalPages={totalPages}
+      loading={isPreviousData || isLoading}
+      onDecrease={() => {
+        const newPageNumber = pageNumber - 1
+        setPageNumber(newPageNumber)
+        sessionStorage.setItem('campanhapage', newPageNumber)
+      }}
+      onEncrease={() => {
+        const newPageNumber = pageNumber + 1
+        setPageNumber(newPageNumber)
+        sessionStorage.setItem('campanhapage', newPageNumber)
+      }}
+    />
+  </main>
 }
 
 Campanhas.propTypes = {
