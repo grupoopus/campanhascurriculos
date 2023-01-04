@@ -16,8 +16,8 @@
   "profile": {
     "name": "json server"
   },
-  "me": {
-    "empresa": "Grupo Opus"
+  "health": {
+    "message": "JSON server"
   },
   "campanhas": [
     {
