@@ -19,6 +19,24 @@
   "health": {
     "message": "JSON server"
   },
+  "funcoes": [
+    "Motorista",
+    "Assistente Administrativo",
+    "Advogado",
+    "Estagiário",
+    "Auxiliar de Produção",
+    "Enfermeiro",
+    "Jardineiro",
+    "Auxiliar Administrativo",
+    "Analista Financeiro",
+    "Motorista Truck",
+    "Motorista de Caminhão",
+    "Motorista de Ônibus",
+    "Vendedor",
+    "Assistente Financeiro",
+    "Motorista de Van",
+    "Projetista"
+  ],
   "campanhas": [
     {
       "id": 1,
