@@ -9,7 +9,7 @@ const fetchMe = () => axios({
 }).then(res => res.data)
 
 const useAuthMe = () => {
-  const { isAuthenticated, getAccessTokenSilently } = useAuth0()
+  const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0()
   const [jwtAuth0, setJwtAuth0] = useState()
   const queryMe = useQuery('me', fetchMe, { enabled: !!jwtAuth0, refetchOnWindowFocus: false, retry: 1 })
 
@@ -27,7 +27,7 @@ const useAuthMe = () => {
 
   return {
     isAuthenticated,
-    isFetching: queryMe.isFetching,
+    isFetching: isLoading || queryMe.isFetching,
     isError: queryMe.isError,
     empresa: queryMe.data?.message
   }
