@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import mockStados from '../components/cidades'
 
-const estados = ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO']
-const cidades = ['Acrelândia', 'Assis Brasil', 'Brasiléia', 'Bujari', 'Capixaba', 'Cruzeiro do Sul', 'Epitaciolândia', 'Feijó', 'Jordão', 'Mâncio Lima', 'Manoel Urbano', 'Marechal Thaumaturgo', 'Plácido de Castro', 'Porto Acre', 'Porto Walter', 'Rio Branco', 'Rodrigues Alves', 'Santa Rosa do Purus', 'Sena Madureira', 'Senador Guiomard', 'Tarauacá', 'Xapuri']
+const estados = Object.keys(mockStados)
 
 const Selecao = () => {
+  const [uf, setUf] = useState('UF')
+  const cidadesLista = mockStados[uf]?.cidades || []
+  const [cidade, setCidade] = useState('Cidade')
+  const [cidadesEscolhidas, setCidadesEscolhidas] = useState([])
+
   return <form action='#' method='POST' className='max-w-2xl mx-auto mt-16 border grid gap-4 grid-cols-12'>
     <div className='border col-span-9'>
       <label htmlFor='input_funcao' className='block text-sm font-medium text-gray-700'>Função</label>
@@ -59,29 +64,44 @@ const Selecao = () => {
     <div className='border col-span-12'>
       <p className='text-sm font-medium text-gray-700'>localidade</p>
       <div className='flex items-center mt-1'>
-        <select id="select-carteira-carros" className='border-gray-300 rounded-lg shadow-sm focus:border-gray-500 focus:ring-gray-500 mr-1'>
+        <select id="select-carteira-carros" className='border-gray-300 rounded-lg shadow-sm focus:border-gray-500 focus:ring-gray-500 mr-1' value={uf} onChange={ev => {
+          setUf(ev.target.value)
+          setCidade('Cidade')
+        }}>
           {
-            [
-              <option key={'estado'}>UF</option>,
-              ...estados.map(el => <option key={el} value={el}>{el}</option>)
-            ]
+            estados.map(el => <option key={el} value={el}>{el}</option>)
           }
         </select>
-        <select id="select-carteira-carros" className='w-full border-gray-300 rounded-lg shadow-sm focus:border-gray-500 focus:ring-gray-500 ml-1'>
+        <select id="select-carteira-carros" className='w-full border-gray-300 rounded-lg shadow-sm focus:border-gray-500 focus:ring-gray-500 ml-1' value={cidade} onChange={ev => {
+          setCidade(ev.target.value)
+        }}>
         {
             [
               <option key={'cidades'}>Cidade</option>,
-              ...cidades.map(el => <option key={el} value={el}>{el}</option>)
+              ...cidadesLista.map(el => <option key={el} value={el}>{el}</option>)
             ]
           }
         </select>
-        <button type='button' className='bg-transparent hover:bg-gray-500 text-gray-700 hover:text-white py-1 px-2 mx-2 border-2 border-gray-500 hover:border-transparent rounded-lg'>ADICIONAR</button>
+        <button type='button' className='bg-transparent hover:bg-gray-500 text-gray-700 hover:text-white py-1 px-2 mx-2 border-2 border-gray-500 hover:border-transparent rounded-lg' onClick={() => {
+          const cidadeEscolhida = {
+            uf,
+            cidade
+          }
+          const novaCidadesEscolhidas = cidadesEscolhidas.concat(cidadeEscolhida)
+          setCidadesEscolhidas(novaCidadesEscolhidas)
+          setUf('UF')
+          setCidade('Cidade')
+        }}
+        disabled={
+          false
+        }
+        >ADICIONAR</button>
       </div>
     </div>
     <div className='border col-span-12'>
-      <p>MT - Cuiabá</p>
-      <p>MT - Várgea Grande</p>
-      <p>MT - Santo Antônio do Leverger</p>
+      {
+        cidadesEscolhidas.map((el, idx) => <p key={`${el.uf}-${el.cidade}-${idx}`}>{el.uf} - {el.cidade}</p>)
+      }
     </div>
     <div className='border col-span-12 text-center'>
       <button type='button' className='bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded'>Consultar</button>
