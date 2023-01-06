@@ -93,7 +93,9 @@ const Selecao = () => {
           setCidade('Cidade')
         }}
         disabled={
-          false
+          uf === 'UF' ||
+          cidade === 'Cidade' ||
+          !!cidadesEscolhidas.find(el => el.uf === uf && el.cidade === cidade)
         }
         >ADICIONAR</button>
       </div>
