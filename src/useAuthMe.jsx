@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const fetchMe = () => axios({
   method: 'GET',
-  url: '/health'
+  url: '/me'
 }).then(res => res.data)
 
 const useAuthMe = () => {
@@ -19,7 +19,7 @@ const useAuthMe = () => {
         .then(token => {
           console.log('get auth0 token')
           setJwtAuth0(token)
-          axios.defaults.headers.common.Authorization = token
+          axios.defaults.headers.common.Authorization = `Bearer ${token}`
           localStorage.setItem('jwt', token)
         })
     }
@@ -29,7 +29,7 @@ const useAuthMe = () => {
     isAuthenticated,
     isFetching: isLoading || queryMe.isFetching,
     isError: queryMe.isError,
-    empresa: queryMe.data?.message
+    empresa: queryMe.data?.userCompany
   }
 }
 
