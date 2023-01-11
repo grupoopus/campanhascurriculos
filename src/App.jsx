@@ -6,6 +6,7 @@ import NavBarAnon from './components/NavBarAnon'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Auth0Token from './pages/Auth0Token'
+import Campanha from './pages/Campanha'
 import useAuthMe from './useAuthMe'
 
 import Selecao from './pages/Selecao'
@@ -26,6 +27,7 @@ function App () {
     <Navbar empresa={authMe.empresa || 'Carregando'}/>
     <Routes>
       <Route path='auth0token' element={<Auth0Token />}/>
+      <Route path='campanha' element={<Campanha />}/>
       <Route path='selecao' element={<Selecao />}/>
       <Route path='*' element={<About />}/>
     </Routes>

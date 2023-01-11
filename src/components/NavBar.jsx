@@ -14,7 +14,7 @@ const NavBar = ({ empresa }) => {
       {
         isAuthenticated
           ? <>
-            <NavBarListItem to="campanhas">Campanhas</NavBarListItem>
+            <NavBarListItem to="campanha">Campanha</NavBarListItem>
             <NavBarListItem to="questionarios">Questionários</NavBarListItem>
             <NavBarListItem to="selecao">Seleção</NavBarListItem>
             <NavBarListItem to="convite">Envio Convite</NavBarListItem>

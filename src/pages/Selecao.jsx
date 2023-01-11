@@ -61,8 +61,6 @@ const Selecao = () => {
   // const curriculosHead = Object.keys(curriculos[0] || {})
   const curriculosbody = curriculos.map(row => curriculosHead.map(head => row[head]))
 
-  console.dir(curriculosHead)
-
   const adicionarDisable = uf === 'UF' ||
     cidade === 'Cidade' ||
     !!cidadesEscolhidas.find(el => el.uf === uf && el.cidade === cidade)

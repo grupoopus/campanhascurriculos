@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { useQuery, useMutation, useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import { useQuery } from 'react-query'
 import axios from 'axios'
 
 import CampanhaList from '../components/CampanhaList'
@@ -10,10 +9,10 @@ import PageControl from '../components/PageControl'
 const pageSize = 4
 
 const fetchCampanhas = ({ queryKey }) => {
-  const pageNumber = queryKey.slice(-1)
+  const pageNumber = queryKey.slice(-1).pop()
   return axios({
     method: 'GET',
-    url: '/campanhas',
+    url: '/campanha',
     params: {
       _limit: pageSize,
       _page: pageNumber
@@ -28,46 +27,32 @@ const fetchCampanhas = ({ queryKey }) => {
     return { campanhas, totalPages }
   })
 }
-const fetchDeleteCampanhaX = (id) => axios({
-  method: 'DELETE',
-  url: `/campanhas/${id}`
-})
 
-const Campanhas = ({ empresa }) => {
-  const queryClient = useQueryClient()
+const Campanha = () => {
   const navigate = useNavigate()
   const [pageNumber, setPageNumber] = useState(Number(sessionStorage.getItem('campanhapage')) || 1)
-  const { data: { campanhas, totalPages = 1 } = {}, isLoading, isPreviousData, error } = useQuery(['campanhas', pageNumber], fetchCampanhas, {
-    refetchInterval: 60_000,
-    staleTime: 60_000,
-    keepPreviousData: true,
-    enabled: !!empresa
+  const queryCampanhas = useQuery(['campanhaPage', pageNumber], fetchCampanhas, {
+    // refetchInterval: 60_000,
+    // staleTime: 60_000,
+    keepPreviousData: true
   })
-  const deleteCampanha = useMutation(fetchDeleteCampanhaX, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(['campanhas', pageNumber])
-    }
-  })
+
+  console.dir(queryCampanhas.data)
 
   return <main className='container mx-auto'>
     <div className="flex flex-row justify-center m-8">
-      <button className='bg-white hover:bg-gray-100 border rounded shadow px-4 py-2' onClick={() => navigate('/campanhanova')}>Nova Campanha</button>
+      <button type="button" className='bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded' onClick={() => navigate('/campanhanova')}>Nova Campanha</button>
     </div>
-
     <CampanhaList
-      campanhas={ isLoading || error ? [] : campanhas}
-      onEdit={campanhaId => {
-        // setCampanha(campanhas.find(el => el.id === campanhaId))
-        navigate(`/campanhaedit/${campanhaId}`)
-      }}
-      onDel={campanhaId => {
-        deleteCampanha.mutate(campanhaId)
+      campanhas={ queryCampanhas.isLoading || queryCampanhas.error ? [] : queryCampanhas.data.campanhas}
+      onRowClick={campanhaId => {
+        navigate(`/selecao/${campanhaId}`)
       }}
     />
     <PageControl
       pageNumber={pageNumber}
-      totalPages={totalPages}
-      loading={isPreviousData || isLoading}
+      totalPages={queryCampanhas.data.totalPages}
+      loading={queryCampanhas.isPreviousData || queryCampanhas.isLoading}
       onDecrease={() => {
         const newPageNumber = pageNumber - 1
         setPageNumber(newPageNumber)
@@ -82,8 +67,4 @@ const Campanhas = ({ empresa }) => {
   </main>
 }
 
-Campanhas.propTypes = {
-  empresa: PropTypes.string
-}
-
-export default Campanhas
+export default Campanha
