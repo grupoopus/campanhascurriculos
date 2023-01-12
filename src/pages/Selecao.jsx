@@ -66,7 +66,7 @@ const Selecao = () => {
     !!cidadesEscolhidas.find(el => el.uf === uf && el.cidade === cidade)
 
   return <>
-    <form action='#' method='POST' className='max-w-2xl mx-auto mt-16 grid gap-4 grid-cols-12'>
+    <form action='#' method='POST' className='container mx-auto max-w-2xl mt-16 grid gap-4 grid-cols-12'>
       <div className='col-span-9'>
         <label htmlFor='input_funcao' className='block text-sm font-medium text-gray-700'>Função</label>
         <input
@@ -231,7 +231,7 @@ const Selecao = () => {
       <div className='col-span-12'>
         <p className='text-sm font-medium text-gray-700'>localidade</p>
         <div className='flex items-center mt-1'>
-          <select id="select-carteira-carros" className='border-gray-300 rounded-lg shadow-sm focus:border-gray-500 focus:ring-gray-500 mr-1' value={uf} onChange={ev => {
+          <select id="select-uf" className='border-gray-300 rounded-lg shadow-sm focus:border-gray-500 focus:ring-gray-500 mr-1' value={uf} onChange={ev => {
             setUf(ev.target.value)
             setCidade('Cidade')
           }}>
@@ -239,7 +239,7 @@ const Selecao = () => {
               estados.map(el => <option key={el} value={el}>{el}</option>)
             }
           </select>
-          <select id="select-carteira-carros" className='w-full border-gray-300 rounded-lg shadow-sm focus:border-gray-500 focus:ring-gray-500 ml-1' value={cidade} onChange={ev => {
+          <select id="select-cidade" className='w-full border-gray-300 rounded-lg shadow-sm focus:border-gray-500 focus:ring-gray-500 ml-1' value={cidade} onChange={ev => {
             setCidade(ev.target.value)
           }}>
           {
