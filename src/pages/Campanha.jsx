@@ -37,8 +37,6 @@ const Campanha = () => {
     keepPreviousData: true
   })
 
-  console.dir(queryCampanhas.data)
-
   return <main className='container mx-auto'>
     <div className="flex flex-row justify-center m-8">
       <button type="button" className='bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded' onClick={() => navigate('/campanhanova')}>Nova Campanha</button>

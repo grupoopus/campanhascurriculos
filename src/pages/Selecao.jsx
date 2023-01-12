@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useMutation } from 'react-query'
 import axios from 'axios'
 import mockStados from '../components/cidades'
 import FuncaoDataList from '../components/FuncaoDataList'
 
+import PageControl from '../components/PageControl'
+
 const estados = Object.keys(mockStados)
+const pageSize = 10
 
 const fetchPostQueryCurriculos = ({ data, _limit, _page }) => axios({
   method: 'POST',
@@ -31,11 +34,21 @@ const Selecao = () => {
   const [cidade, setCidade] = useState('Cidade')
   const [cidadesEscolhidas, setCidadesEscolhidas] = useState([])
   const [consulting, setConsulting] = useState(false)
+  const tableTopRef = useRef()
   const [curriculos, setCurriculos] = useState([])
+  const [lastFilters, setLastFilters] = useState()
+  const [pageNumber, setPageNumber] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
 
   const queryCurriculos = useMutation(fetchPostQueryCurriculos, {
     onSuccess: el => {
       console.log(`x-total-count=${el.headers['x-total-count']}`)
+      const totalCount = el.headers['x-total-count']
+      const completePages = Math.trunc(totalCount / pageSize)
+      const incompletePages = totalCount % pageSize !== 0
+      const newTotalPages = incompletePages ? completePages + 1 : completePages
+      setTotalPages(newTotalPages)
+
       if (el.data && el.data.length > 0) {
         setFuncao('')
         setPcd(false)
@@ -50,6 +63,8 @@ const Selecao = () => {
         setCidade('Cidade')
         setCidadesEscolhidas([])
         setCurriculos(el.data)
+
+        tableTopRef.current.scrollIntoView({ behavior: 'smooth' })
       }
     },
     onSettled: () => {
@@ -66,7 +81,7 @@ const Selecao = () => {
     !!cidadesEscolhidas.find(el => el.uf === uf && el.cidade === cidade)
 
   return <>
-    <form action='#' method='POST' className='container mx-auto max-w-2xl mt-16 grid gap-4 grid-cols-12'>
+    <form ref={tableTopRef} action='#' method='POST' className='container mx-auto max-w-2xl mt-16 grid gap-4 grid-cols-12'>
       <div className='col-span-9'>
         <label htmlFor='input_funcao' className='block text-sm font-medium text-gray-700'>Função</label>
         <input
@@ -325,9 +340,12 @@ const Selecao = () => {
               pretensaoMax
             }
 
+            setPageNumber(1)
+            setLastFilters(filters)
+
             queryCurriculos.mutate({
               data: filters,
-              _limit: 10,
+              _limit: pageSize,
               _page: 1
             })
           }}
@@ -336,7 +354,8 @@ const Selecao = () => {
     </form>
     {
       curriculos && curriculos.length > 0
-        ? <table className='mt-12 max-w-4xl mx-auto border text-center border-collapse'>
+        ? <>
+          <table className='mt-12 max-w-4xl mx-auto border text-center border-collapse'>
         <thead className='bg-gray-400'>
           <tr>
             {
@@ -353,7 +372,33 @@ const Selecao = () => {
             </tr>)
           }
         </tbody>
-      </table>
+          </table>
+          <PageControl
+            pageNumber={pageNumber}
+            totalPages={totalPages }
+            loading={consulting}
+            onDecrease={() => {
+              const newPageNumber = pageNumber - 1
+              setPageNumber(newPageNumber)
+              console.log('page--')
+              queryCurriculos.mutate({
+                data: lastFilters,
+                _limit: pageSize,
+                _page: newPageNumber
+              })
+            }}
+            onEncrease={() => {
+              const newPageNumber = pageNumber + 1
+              setPageNumber(newPageNumber)
+              console.log('page++')
+              queryCurriculos.mutate({
+                data: lastFilters,
+                _limit: pageSize,
+                _page: newPageNumber
+              })
+            }}
+          />
+        </>
         : null
     }
   </>
