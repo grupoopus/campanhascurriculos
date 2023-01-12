@@ -7,6 +7,7 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Auth0Token from './pages/Auth0Token'
 import Campanha from './pages/Campanha'
+import CampanhaNova from './pages/CampanhaNova'
 import useAuthMe from './useAuthMe'
 
 import Selecao from './pages/Selecao'
@@ -28,6 +29,7 @@ function App () {
     <Routes>
       <Route path='auth0token' element={<Auth0Token />}/>
       <Route path='campanha' element={<Campanha />}/>
+      <Route path='campanhanova' element={<CampanhaNova />}/>
       <Route path='selecao' element={<Selecao />}/>
       <Route path='*' element={<About />}/>
     </Routes>

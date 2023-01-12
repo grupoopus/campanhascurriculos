@@ -51,7 +51,7 @@ const Campanha = () => {
     />
     <PageControl
       pageNumber={pageNumber}
-      totalPages={queryCampanhas.data.totalPages}
+      totalPages={queryCampanhas.data?.totalPages || 1}
       loading={queryCampanhas.isPreviousData || queryCampanhas.isLoading}
       onDecrease={() => {
         const newPageNumber = pageNumber - 1
