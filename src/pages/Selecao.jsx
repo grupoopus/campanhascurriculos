@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 
 import SelecaoForm from '../components/SelecaoForm'
-import SelecaoTable from '../components/SelecaoTable'
+import NiceTable from '../components/NiceTable'
 import PageControl from '../components/PageControl'
 
 const pageSize = 20
@@ -21,6 +22,8 @@ const fetchPostQueryCurriculos = ({ data, _limit, _page }) => axios({
 const curriculosHead = ['nome', 'idade', 'sexo', 'cidade', 'telefone', 'deficiencia', 'pretensao', 'habilitacao', 'funcao', 'ultimo_salario']
 
 const Selecao = () => {
+  const queryClient = useQueryClient()
+  const navigate = useNavigate()
   const tableRef = useRef()
   const [lastFilters, setLastFilters] = useState()
   const [curriculos, setCurriculos] = useState([])
@@ -37,7 +40,11 @@ const Selecao = () => {
 
       if (el.data && el.data.length >= 0) {
         setCurriculos(el.data)
-        tableRef.current.scrollIntoView({
+        console.dir(el.data)
+        el.data?.forEach(curriculo => {
+          queryClient.setQueryData(['curriculo', String(curriculo.id)], curriculo)
+        })
+        tableRef.current?.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
         })
@@ -58,7 +65,9 @@ const Selecao = () => {
     {
       curriculos && curriculos.length > 0
         ? <>
-          <SelecaoTable tableRef={tableRef} head={curriculosHead} body={curriculos} rowClick={console.dir}/>
+          <NiceTable tableRef={tableRef} head={curriculosHead} body={curriculos} rowClick={curriculo => {
+            navigate(`/curriculo/${curriculo.id}`)
+          }}/>
           <PageControl
             pageNumber={pageNumber}
             totalPages={totalPages}
@@ -66,7 +75,6 @@ const Selecao = () => {
             onDecrease={() => {
               const newPageNumber = pageNumber - 1
               setPageNumber(newPageNumber)
-              console.log('page--')
               queryCurriculos.mutate({
                 data: lastFilters,
                 _limit: pageSize,
@@ -76,7 +84,6 @@ const Selecao = () => {
             onEncrease={() => {
               const newPageNumber = pageNumber + 1
               setPageNumber(newPageNumber)
-              console.log('page++')
               queryCurriculos.mutate({
                 data: lastFilters,
                 _limit: pageSize,

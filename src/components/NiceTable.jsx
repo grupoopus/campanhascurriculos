@@ -11,7 +11,8 @@ const SelecaoTable = ({ tableRef, head, body, rowClick }) => {
         }
       </tr>
     </thead>
-        {
+    <tbody>
+    {
           mappedBody.map((row, idx) => <tr
             className={idx % 2 === 0 ? 'cursor-pointer hover:bg-gray-100' : 'cursor-pointer bg-gray-200 hover:bg-gray-300'}
             key={idx}
@@ -22,8 +23,6 @@ const SelecaoTable = ({ tableRef, head, body, rowClick }) => {
             }
           </tr>)
         }
-    <tbody>
-
     </tbody>
   </table>
 }
