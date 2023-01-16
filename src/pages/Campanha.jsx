@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useQuery } from 'react-query'
+import { useQuery, useQueryClient } from 'react-query'
 import axios from 'axios'
 
 import NiceTable from '../components/NiceTable'
@@ -38,6 +38,7 @@ const campanhaHead = [
 ]
 
 const Campanha = () => {
+  const queryClient = useQueryClient()
   const tableRef = useRef()
   const navigate = useNavigate()
   const [pageNumber, setPageNumber] = useState(Number(sessionStorage.getItem('campanhapage')) || 1)
@@ -46,6 +47,9 @@ const Campanha = () => {
     // staleTime: 60_000,
     keepPreviousData: true,
     onSuccess: el => {
+      el.campanhas?.forEach(campanha => {
+        queryClient.setQueryData(['campanha', String(campanha.id)], campanha)
+      })
       tableRef.current?.scrollIntoView({
         behavior: 'smooth',
         block: 'start'

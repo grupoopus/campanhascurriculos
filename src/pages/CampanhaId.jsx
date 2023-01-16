@@ -7,11 +7,11 @@ const fetchCampanhaX = ({ queryKey }) => {
   const campanhaId = queryKey.slice(-1)
   return axios({
     method: 'GET',
-    url: `/campanhas/${campanhaId}`
+    url: `/campanha/id/${campanhaId}`
   }).then(res => res.data)
 }
 
-const CampanhaEdit = () => {
+const CampanhaId = () => {
   const { campanhaId } = useParams()
   const { data: campanha } = useQuery(['campanha', campanhaId], fetchCampanhaX, { enabled: !!campanhaId })
 
@@ -22,4 +22,4 @@ const CampanhaEdit = () => {
     <textarea className="mx-auto md:min-w-[80%] min-w-full" rows={rows} value={text}/>
   </div>
 }
-export default CampanhaEdit
+export default CampanhaId
