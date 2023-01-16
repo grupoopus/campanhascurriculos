@@ -30,7 +30,7 @@ const SelecaoTable = ({ tableRef, head, body, rowClick }) => {
 SelecaoTable.propTypes = {
   tableRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(<table />) })
+    PropTypes.shape({ current: PropTypes.any })
   ]).isRequired,
   head: PropTypes.arrayOf(PropTypes.string).isRequired,
   body: PropTypes.arrayOf(PropTypes.object).isRequired,
