@@ -40,7 +40,6 @@ const Selecao = () => {
 
       if (el.data && el.data.length >= 0) {
         setCurriculos(el.data)
-        console.dir(el.data)
         el.data?.forEach(curriculo => {
           queryClient.setQueryData(['curriculo', String(curriculo.id)], curriculo)
         })
@@ -71,7 +70,7 @@ const Selecao = () => {
           <PageControl
             pageNumber={pageNumber}
             totalPages={totalPages}
-            loading={queryCurriculos.isLoading || queryCurriculos.isPreviousData}
+            loading={queryCurriculos.isLoading || queryCurriculos.isPreviousData || false}
             onDecrease={() => {
               const newPageNumber = pageNumber - 1
               setPageNumber(newPageNumber)
